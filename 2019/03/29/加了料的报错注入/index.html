@@ -12,26 +12,26 @@
 <meta name="keywords" content="sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="加了料的报错注入(实验吧)">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/加了料的报错注入(实验吧)/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/加了料的报错注入/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
 <meta property="og:description" content="题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&amp;lt;&amp;gt;”进行绕过。显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。显示password error，">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190130200351472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190130200249946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190130191735119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019013019181788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019013019232898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190130192358160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190130200116335.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131095733481.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131100343982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131100938666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131101623632.png">
-<meta property="og:updated_time" content="2019-03-29T14:34:05.046Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/11.png">
+<meta property="og:updated_time" content="2019-03-29T17:02:57.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加了料的报错注入(实验吧)">
 <meta name="twitter:description" content="题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&amp;lt;&amp;gt;”进行绕过。显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。显示password error，">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190130200351472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/29/加了料的报错注入/1.png">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -153,7 +153,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-加了料的报错注入(实验吧)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-加了料的报错注入" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -165,7 +165,7 @@
   
 
         
-        <a href="/2019/03/29/加了料的报错注入(实验吧)/" class="archive-article-date">
+        <a href="/2019/03/29/加了料的报错注入/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
         
@@ -173,7 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。<br>首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&lt;&gt;”进行绕过。<br><img src="https://img-blog.csdnimg.cn/20190130200351472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。<br><img src="https://img-blog.csdnimg.cn/20190130200249946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示password error，也就是说我们的username和password都存在着不符合题目要求的地方，我们将报错函数extractvalue分别放在username和admin当中。<br><img src="https://img-blog.csdnimg.cn/20190130191735119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2019013019181788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以总结出来extractvalue()只能存在于username当中，同理我们还发现了”()”只能存在于password当中<br><img src="https://img-blog.csdnimg.cn/2019013019232898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190130192358160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>现在存在于我们身上的问题就是如何实现一句注入语句如何通过两个变量生效。但我们根据题目提示的注入语句，我们可以发现sql=”select  from users where username=’username’ and password=’password’，如果我们使用/*这个代表空格的符号对注入语句进行改造。payload:<img src="https://img-blog.csdnimg.cn/20190130200116335.png" alt="在这里插入图片描述"><br>其实此时执行的语句为username=1’or extractvalue(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e)),”//“中间的内容被注释掉了。<br>对语句改造并查询后<img src="https://img-blog.csdnimg.cn/20190131095733481.png" alt="在这里插入图片描述"><br>并没有得到我们想要的结果，在询问了班上的同学之后才知道问题存在于我的“&lt;&gt;”当中，它并不能取代”=”的作用。<br><img src="https://img-blog.csdnimg.cn/20190131100343982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因此我们还是采用”regexp”的方式对等于号进行绕过<br><img src="https://img-blog.csdnimg.cn/20190131100938666.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190131101623632.png" alt="在这里插入图片描述"></p>
+        <p>题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。<br>首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&lt;&gt;”进行绕过。<br><img src="/2019/03/29/加了料的报错注入/1.png" alt="在这里插入图片描述">显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。<br><img src="/2019/03/29/加了料的报错注入/2.png" alt="在这里插入图片描述"><br>显示password error，也就是说我们的username和password都存在着不符合题目要求的地方，我们将报错函数extractvalue分别放在username和admin当中。<br><img src="/2019/03/29/加了料的报错注入/3.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/4.png" alt="在这里插入图片描述"><br>我们可以总结出来extractvalue()只能存在于username当中，同理我们还发现了”()”只能存在于password当中<br><img src="/2019/03/29/加了料的报错注入/5.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/6.png" alt="在这里插入图片描述"><br>现在存在于我们身上的问题就是如何实现一句注入语句如何通过两个变量生效。但我们根据题目提示的注入语句，我们可以发现sql=”select  from users where username=’username’ and password=’password’，如果我们使用/*这个代表空格的符号对注入语句进行改造。payload:<img src="/2019/03/29/加了料的报错注入/7.png" alt="在这里插入图片描述"><br>其实此时执行的语句为username=1’or extractvalue(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e)),”//“中间的内容被注释掉了。<br>对语句改造并查询后<img src="/2019/03/29/加了料的报错注入/8.png" alt="在这里插入图片描述"><br>并没有得到我们想要的结果，在询问了班上的同学之后才知道问题存在于我的“&lt;&gt;”当中，它并不能取代”=”的作用。<br><img src="/2019/03/29/加了料的报错注入/9.png" alt="在这里插入图片描述"><br>因此我们还是采用”regexp”的方式对等于号进行绕过<br><img src="/2019/03/29/加了料的报错注入/10.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/11.png" alt="在这里插入图片描述"></p>
 
       
 
@@ -243,7 +243,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/加了料的报错注入(实验吧)/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/加了料的报错注入/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -257,11 +257,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/29/你真的会PHP吗？(实验吧)/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/29/babyGo/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          你真的会PHP吗？(实验吧)
+          babyGo(安恒2019.1 pop链的构造)
         
       </div>
     </a>

