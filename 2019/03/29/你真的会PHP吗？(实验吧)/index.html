@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | GAP&#39;s blog</title>
+  <title>你真的会PHP吗？(实验吧) | GAP&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GAP&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你真的会PHP吗？(实验吧)">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/你真的会PHP吗？(实验吧)/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
+<meta property="og:description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131204116358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019013121361039.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190131214038927.png">
+<meta property="og:updated_time" content="2019-03-29T14:34:16.787Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GAP&#39;s blog">
+<meta name="twitter:title" content="你真的会PHP吗？(实验吧)">
+<meta name="twitter:description" content="根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。访问地址得到我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。is_palind">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -136,150 +146,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-你真的会PHP吗？(实验吧)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      你真的会PHP吗？(实验吧)
+    </h1>
+  
+
+        
+        <a href="/2019/03/29/你真的会PHP吗？(实验吧)/" class="archive-article-date">
+  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>根据题目感觉应该是一道php代码审计的题目，进入题目后f12在响应头中得到hint。<br><img src="https://img-blog.csdnimg.cn/20190131204023658.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>访问地址得到<br><img src="https://img-blog.csdnimg.cn/20190131204116358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以知道需要以post方式传入变量number，foreach当中会对会对vlaue进行trim()和addslashes()，trim()函数会移除换行和空格符。addslashes()函数会将语句当中的 ‘ 换成 /’ 可以防止sql注入，但我们可以用宽字节注入的方式进行绕过。<br>is_palindrome_number函数，判断number是否为一个回文数，即一个数正序和倒序一样的数字。<br><img src="https://img-blog.csdnimg.cn/2019013121361039.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>is_numeric()函数判断是否为一个数字，可以用%00截断进行绕过。<br>题目要求number不能是一个数字，但需要是不一个“回文数”可strrev()函数的要求需要其正序和倒序的值相同，便出现了可矛盾的地方。题目的漏洞存在于处理strrev()函数的语句当中<img src="https://img-blog.csdnimg.cn/20190131214038927.png" alt="在这里插入图片描述"><br>intval函数获取变量的整数值，但intval最大的取值取决于操作系统，32 位系统最大带符号的 integer 范围是 -2147483648 到 2147483647。举例，在这样的系统上， intval(‘1000000000000’) 会返回 2147483647。64 位系统上，最大带符号的 integer 值是 9223372036854775807。（可以满足倒序后不是回文数但值相等的条件）。<br>payload:number=2147483647%00</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/HGAME2019-happyPython/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/HGAME2019-happyPython/">HGAME2019 happyPython</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/TAMUCTF2019 web writeup/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/TAMUCTF2019 web writeup/">TAMUCTF2019 web writeup</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/HGAME 2019 WEB week2/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/HGAME 2019 WEB week2/">HGAME 2019 WEB week2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/">babyGo(安恒2019.1 pop链的构造)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -291,95 +186,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/你真的会PHP吗？(实验吧)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/你真的会PHP吗？(实验吧)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          babyGo(安恒2019.1 pop链的构造)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/29/加了料的报错注入(实验吧)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">加了料的报错注入(实验吧)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/你真的会PHP吗？(实验吧)/">你真的会PHP吗？(实验吧)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/加了料的报错注入(实验吧)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/加了料的报错注入(实验吧)/">加了料的报错注入(实验吧)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -402,8 +317,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

