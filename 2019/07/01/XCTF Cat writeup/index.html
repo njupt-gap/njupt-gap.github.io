@@ -6,30 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HGAME2019 happyPython | GAP&#39;s blog</title>
+  <title>XCTF Cat writeup | GAP&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这道题想了好久啊，写出来了就赶紧来记录一下，确实还有很多不了解的领域，需要继续努力哈~进入题目后得到提示，这是利用flask(一个使用 Python 编写的轻量级 Web 应用框架)编写的注册和登陆界面。最先想到的就是flask的ssti(服务器模板注入)漏洞，在register界面的url后面直接加上得到可以看到我们已经得到了&amp;#39;SECRET_KEY&amp;#39;: &amp;#39;9RxdzNwq">
-<meta name="keywords" content="flask">
+  <meta name="description" content="刚看到题目的时候猜测是否是需要利用任意命令执行cat来读取文件的内容，后来才发现原来CAT是Cloud Automated Testing的缩写…猜测1测试输入127.0.0.1发现网站起到了检测目标站点网络是否连通(ping)的作用，我们都知道ping是一个php当中很危险的函数，可以利用|实现任意命令执行，测试payload:127.0.0.1|phpinfo();,得到返回为Invalid">
+<meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HGAME2019 happyPython">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/index.html">
+<meta property="og:title" content="XCTF Cat writeup">
+<meta property="og:url" content="http://yoursite.com/2019/07/01/XCTF Cat writeup/index.html">
 <meta property="og:site_name" content="GAP&#39;s blog">
-<meta property="og:description" content="这道题想了好久啊，写出来了就赶紧来记录一下，确实还有很多不了解的领域，需要继续努力哈~进入题目后得到提示，这是利用flask(一个使用 Python 编写的轻量级 Web 应用框架)编写的注册和登陆界面。最先想到的就是flask的ssti(服务器模板注入)漏洞，在register界面的url后面直接加上得到可以看到我们已经得到了&amp;#39;SECRET_KEY&amp;#39;: &amp;#39;9RxdzNwq">
+<meta property="og:description" content="刚看到题目的时候猜测是否是需要利用任意命令执行cat来读取文件的内容，后来才发现原来CAT是Cloud Automated Testing的缩写…猜测1测试输入127.0.0.1发现网站起到了检测目标站点网络是否连通(ping)的作用，我们都知道ping是一个php当中很危险的函数，可以利用|实现任意命令执行，测试payload:127.0.0.1|phpinfo();,得到返回为Invalid">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221142051745.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221142836958.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221144305642.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221145239492.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221145635475.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221145725785.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221150018722.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221150107766.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221150237830.png">
-<meta property="og:updated_time" content="2019-04-18T12:45:11.262Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/5.png">
+<meta property="og:updated_time" content="2019-07-24T02:21:48.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HGAME2019 happyPython">
-<meta name="twitter:description" content="这道题想了好久啊，写出来了就赶紧来记录一下，确实还有很多不了解的领域，需要继续努力哈~进入题目后得到提示，这是利用flask(一个使用 Python 编写的轻量级 Web 应用框架)编写的注册和登陆界面。最先想到的就是flask的ssti(服务器模板注入)漏洞，在register界面的url后面直接加上得到可以看到我们已经得到了&amp;#39;SECRET_KEY&amp;#39;: &amp;#39;9RxdzNwq">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/29/HGAME2019-happyPython/20190221142051745.png">
+<meta name="twitter:title" content="XCTF Cat writeup">
+<meta name="twitter:description" content="刚看到题目的时候猜测是否是需要利用任意命令执行cat来读取文件的内容，后来才发现原来CAT是Cloud Automated Testing的缩写…猜测1测试输入127.0.0.1发现网站起到了检测目标站点网络是否连通(ping)的作用，我们都知道ping是一个php当中很危险的函数，可以利用|实现任意命令执行，测试payload:127.0.0.1|phpinfo();,得到返回为Invalid">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/01/XCTF%20Cat%20writeup/1.png">
   
     <link rel="alternative" href="/atom.xml" title="GAP&#39;s blog" type="application/atom+xml">
   
@@ -155,14 +151,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HGAME2019-happyPython" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-XCTF Cat writeup" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      HGAME2019 happyPython
+      XCTF Cat writeup
     </h1>
   
 
@@ -177,20 +173,15 @@
         </a>
       
         
-        <a href="/2019/03/29/HGAME2019-happyPython/" class="archive-article-date">
-  	<time datetime="2019-03-29T13:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-29</time>
+        <a href="/2019/07/01/XCTF Cat writeup/" class="archive-article-date">
+  	<time datetime="2019-07-01T06:53:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这道题想了好久啊，写出来了就赶紧来记录一下，确实还有很多不了解的领域，需要继续努力哈~<br><img src="/2019/03/29/HGAME2019-happyPython/20190221142051745.png" alt="在这里插入图片描述"><br>进入题目后得到提示，这是利用flask(一个使用 Python 编写的轻量级 Web 应用框架)编写的注册和登陆界面。最先想到的就是<strong>flask的ssti(服务器模板注入)漏洞</strong>，在register界面的url后面直接加上得到<br><img src="/2019/03/29/HGAME2019-happyPython/20190221142836958.png" alt="在这里插入图片描述"><br>可以看到我们已经得到了<code>&#39;SECRET_KEY&#39;: &#39;9RxdzNwq7!nOoK3*&#39;</code>，接下来根据提示flag在管理员的账号下，应该是要伪造admin登陆，但是想了好久都不知道admin的邮箱应该是什么，于是乎注册了一个普通的用户并在登录的过程中进行抓包。<br>然后注意到了请求头中cookie的session<img src="/2019/03/29/HGAME2019-happyPython/20190221144305642.png" alt="在这里插入图片描述"><br>查阅了资料后了解了flask的另外一个漏洞—<strong>利用session进行身份伪造</strong>，flask将session整个的存到cookie里(当然是加密后的)，所以叫做客户端session，也就是上图中所显示的内容，这个session只经过base64和密钥加密，而且密钥我们在一开始便已经获得了。我们要做的就是改包，将原本的session替换掉，这是在github上面找到的伪造session脚本。</p>
-<blockquote>
-<p><a href="https://github.com/noraj/flask-session-cookie-manager" target="_blank" rel="noopener">https://github.com/noraj/flask-session-cookie-manager</a></p>
-</blockquote>
-<p><img src="/2019/03/29/HGAME2019-happyPython/20190221145239492.png" alt="在这里插入图片描述"><br>好像没有找到可以修改进行伪造的地方。。。<code>_id</code>的内容也无法进行解密，forward继续抓包，发现竟然还有一个session。<br><img src="/2019/03/29/HGAME2019-happyPython/20190221145635475.png" alt="在这里插入图片描述"><br>利用脚本进行decode<br><img src="/2019/03/29/HGAME2019-happyPython/20190221145725785.png" alt="在这里插入图片描述"><br>注意到了<code>user_id</code>这一项，值为8，那么admin的id会不会就是1呢？将<code>user_id</code>修改为1后进行加密</p>
-<p><img src="/2019/03/29/HGAME2019-happyPython/20190221150018722.png" alt="在这里插入图片描述"><br>得到的完整结果<br><img src="/2019/03/29/HGAME2019-happyPython/20190221150107766.png" alt="在这里插入图片描述"><br>替换原有的session后就得到最终的flag啦<br><img src="/2019/03/29/HGAME2019-happyPython/20190221150237830.png" alt="在这里插入图片描述"></p>
+        <p>刚看到题目的时候猜测是否是需要利用任意命令执行cat来读取文件的内容，后来才发现原来CAT是Cloud Automated Testing的缩写…<br><img src="/2019/07/01/XCTF Cat writeup/1.png" alt="在这里插入图片描述"><br><strong>猜测1</strong><br>测试输入127.0.0.1发现网站起到了检测目标站点网络是否连通(ping)的作用，我们都知道ping是一个php当中很危险的函数，可以利用<code>|</code>实现任意命令执行，测试payload:<code>127.0.0.1|phpinfo();</code>,得到返回为<code>Invalid URL</code>猜测我们的输入当中存在有非法字符导致命令无法执行,fuzz一下可使用的字符只剩下了数字，英文字母和<code>.</code>，这么一想构造任意命令执行似乎无法实现了。<br><strong>猜测2</strong><br>之前做过一道MOCTF的名叫网站检测器的题目，利用到的是url解析差异实现的ssrf，那道题目当中实现了利用十六进制编码和url二次编码对于dot的绕过，但在本题当中并不适用，我们并不清楚想要读取到的网页名称，并且测试过后ssrf也并不存在。<br><strong>正解</strong><br>查看官方的wp开始的时候并不是很理解为什么输入为%80(以及%80之后的url编码)就可以返回Django报错，查看url编码表后<br><img src="/2019/07/01/XCTF Cat writeup/2.png" alt="在这里插入图片描述"><br>可以看到%80后的字符结合报错信息<code>UnicodeEncodeError</code>可以推断是由于ascii编码不支持导致的报错,根据报错信息可以得到的信息<br><img src="/2019/07/01/XCTF Cat writeup/3.png" alt="在这里插入图片描述"><br>网站是使用Django进行开发的,结合PHP可以通过在参数中注入@来读取文件的漏洞,依次查看python的配置文件和数据库得到flag的内容<br>payload:<code>?url=@/opt/api/api/settings.py</code>,获取数据库名<br><img src="/2019/07/01/XCTF Cat writeup/4.png" alt="在这里插入图片描述"><br>payload:<code>?url=@/opt/api/database.sqlite3</code>,获取数据库内容<br><img src="/2019/07/01/XCTF Cat writeup/5.png" alt="在这里插入图片描述"></p>
 
       
 
@@ -204,7 +195,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ctf</a>
         		</li>
       		
 		</ul>
@@ -260,7 +251,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/29/HGAME2019-happyPython/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/01/XCTF Cat writeup/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +265,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/29/TAMUCTF2019 web writeup/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/14/XCTF bug writeup/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          TAMUCTF2019 web writeup
+          XCTF bug writeup(文件上传绕过)
         
       </div>
     </a>
   
   
-    <a href="/2019/03/29/你真的会PHP吗/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你真的会PHP吗？(实验吧)</div>
+    <a href="/2019/04/25/CISCN2019 web writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CISCN web writeup</div>
       <i class="icon-circle-right"></i>
     </a>
   
